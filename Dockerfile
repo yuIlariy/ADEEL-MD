@@ -1,9 +1,9 @@
-FROM node:lts-buster
+FROM node:lts-bookworm
 
 WORKDIR /app
 
 RUN apt-get update && \
-    apt-get install -y ffmpeg imagemagick webp git && \
+    apt-get install -y ffmpeg imagemagick webp && \
     rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
