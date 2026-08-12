@@ -1,14 +1,16 @@
 FROM node:lts-buster
 
-RUN git clone https://github.com/Adeel-Xtech/ADEEL-MD.git /root/adeel-bot
-
-WORKDIR /root/adeel-bot
+WORKDIR /app
 
 RUN apt-get update && \
-    apt-get install -y ffmpeg imagemagick webp && \
+    apt-get install -y ffmpeg imagemagick webp git && \
     rm -rf /var/lib/apt/lists/*
 
-RUN npm install && npm install -g pm2
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
 
 EXPOSE 9090
 
